@@ -1,0 +1,8 @@
+<!ELEMENT mapdata (gamefieldimage, player, enemy+)>
+    <!ELEMENT gamefieldimage EMPTY>
+        <!ATTLIST gamefieldimage src CDATA #REQUIRED>
+    <!ELEMENT player (go+)>
+    <!ELEMENT enemy (go+)>
+        <!ELEMENT go EMPTY>
+            <!ATTLIST go amount CDATA #REQUIRED>
+            <!ATTLIST go length CDATA #REQUIRED>

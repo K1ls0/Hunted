@@ -1,0 +1,6 @@
+<!ELEMENT mapindex (map*)>
+    <!ELEMENT map (mapImage, attributes)>
+        <!ELEMENT mapImage EMPTY>
+            <!ATTLIST mapImage img CDATA #REQUIRED>
+        <!ELEMENT attributes EMPTY>
+            <!ATTLIST attributes src CDATA #REQUIRED>

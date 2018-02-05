@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<mapdata>
+	<gamefieldimage src="Map1.png" />
+	
+	<player>
+		<go length="3" amount="1"/>
+		<go length="2" amount="3"/>
+		<go length="1" amount="-1"/>
+
+	</player>
+	
+	<enemy>
+		<go length="1" amount="-1"/>
+		<go length="2" amount="2"/>
+
+	</enemy>
+</mapdata>
