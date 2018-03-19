@@ -2,18 +2,19 @@ package main.de.Kilso.hunted.initialization.xml.exceptions;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.File;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-public class SAXHandler extends DefaultHandler {
+public class XMLHandler extends DefaultHandler {
 
     private Hashtable<String, Integer> exceptionTags;
 
-    public static SAXHandler create() {
-        return new SAXHandler();
+    public static XMLHandler create() {
+        return new XMLHandler();
     }
 
     public void startDocument() throws SAXException {
@@ -50,5 +51,21 @@ public class SAXHandler extends DefaultHandler {
             path = "/" + path;
         }
         return "file:" + path;
+    }
+
+    public void warning(SAXParseException spe) {
+        System.out.println("Warning: " + getParseExceptionInfo(spe));
+    }
+
+    public void error(SAXParseException spe) throws SAXException {
+        throw new SAXException("Error: " + getParseExceptionInfo(spe));
+    }
+
+    public void fatalError(SAXParseException spe) throws SAXException {
+        throw new SAXException("Fatal Error: " + getParseExceptionInfo(spe));
+    }
+
+    private String getParseExceptionInfo(SAXParseException spe) {
+        return "URI: " + (spe.getSystemId() == null ? "null" : spe.getSystemId()) + "  Line: " + spe.getLineNumber() + "\nMessage: " + spe.getMessage();
     }
 }
