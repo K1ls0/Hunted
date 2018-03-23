@@ -1,7 +1,7 @@
 package main.de.Kilso.hunted.initialization.png;
 
-import main.de.Kilso.hunted.game.field.FieldObject;
-import main.de.Kilso.hunted.game.field.GameField;
+import main.de.Kilso.hunted.game.field.FieldTile;
+import main.de.Kilso.hunted.game.field.RawField;
 import main.de.Kilso.hunted.game.field.Ground;
 import main.de.Kilso.hunted.game.field.Wall;
 import main.de.Kilso.hunted.main.config.ReferenceColors;
@@ -14,7 +14,7 @@ public class MapInterpreter {
 
     private BufferedImage fieldImage;
 
-    private GameField interpretedImage;
+    private RawField interpretedImage;
 
     private Point playerPosition;
 
@@ -37,13 +37,13 @@ public class MapInterpreter {
 
 
 
-    private GameField interpreteMapImage() {
-        GameField gameField = GameField.createByDimension(fieldImage.getWidth(), fieldImage.getHeight());
-        FieldObject[][] fieldArray = gameField.getField();
+    private RawField interpreteMapImage() {
+        RawField gameField = RawField.createByDimension(fieldImage.getWidth(), fieldImage.getHeight());
+        FieldTile[][] fieldTileArray = gameField.getField();
 
-        for (int x = 0; x < fieldArray.length; x++) {
-            for (int y = 0; y < fieldArray[x].length; y++) {
-                fieldArray[x][y] = getFieldObjByColor(fieldImage.getRGB(x, y));
+        for (int x = 0; x < fieldTileArray.length; x++) {
+            for (int y = 0; y < fieldTileArray[x].length; y++) {
+                fieldTileArray[x][y] = getFieldObjByColor(fieldImage.getRGB(x, y));
 
                 if (fieldImage.getRGB(x, y) == ReferenceColors.COLOR_PLAYER) {
                     playerPosition = new Point(x, y);
@@ -59,12 +59,12 @@ public class MapInterpreter {
             }
         }
 
-        gameField.setField(fieldArray);
+        gameField.setField(fieldTileArray);
 
         return gameField;
     }
 
-    private FieldObject getFieldObjByColor(int rgb) {
+    private FieldTile getFieldObjByColor(int rgb) {
         if (rgb == ReferenceColors.COLOR_WALL) {
             return new Wall();
         } else {
@@ -86,7 +86,7 @@ public class MapInterpreter {
         return enemyLists;
     }
 
-    public GameField getInterpretedImage() {
+    public RawField getInterpretedImage() {
         return interpretedImage;
     }
 

@@ -6,8 +6,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class XMLAdapter {
 
@@ -24,6 +23,7 @@ public class XMLAdapter {
             System.out.println("XML Parser could not being set up correctly:");
             pcE.printStackTrace();
         }
+
     }
     public static XMLAdapter create() throws SAXException {
         return new XMLAdapter();
@@ -32,14 +32,29 @@ public class XMLAdapter {
 
 
     private DocumentBuilder setupParser() throws SAXException, ParserConfigurationException {
-        DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-        fac.setNamespaceAware(true);
-        fac.setValidating(true);
-        return fac.newDocumentBuilder();
+        try {
+            DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+
+            fac.setCoalescing(true);
+            fac.setIgnoringComments(true);
+
+            fac.setNamespaceAware(true);
+            fac.setValidating(true);
+
+            DocumentBuilder db = fac.newDocumentBuilder();
+            db.setErrorHandler(XMLHandler.create(new PrintWriter(new OutputStreamWriter(System.err, "UTF-8"),
+                    true)));
+
+            return db;
+        } catch (UnsupportedEncodingException uee) {
+            throw new ParserConfigurationException("Error with the Charset");
+        }
     }
 
     public Document parseFile(File f) throws SAXException, IOException {
-        return parser.parse(f);
+        Document parsedFile = parser.parse(f);
+
+        return ;
     }
 
 

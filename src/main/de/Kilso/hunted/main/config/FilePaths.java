@@ -6,5 +6,7 @@ public class FilePaths {
     public static final String GUI_BACKGROUND = "/textures/gui/background.png";
 
 
-    public static final String DTD_MAPS = "Maps.dtd";
+    public static final String MAP_INDEX = "MapIndex.xml";
+
+    public static final String MAP_DTD = "Maps.dtd";
 }

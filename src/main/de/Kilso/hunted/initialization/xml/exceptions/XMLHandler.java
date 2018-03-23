@@ -6,15 +6,21 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class XMLHandler extends DefaultHandler {
 
     private Hashtable<String, Integer> exceptionTags;
+    PrintWriter out;
 
-    public static XMLHandler create() {
-        return new XMLHandler();
+    private XMLHandler(PrintWriter out) {
+        this.out = out;
+    }
+
+    public static XMLHandler create(PrintWriter out) {
+        return new XMLHandler(out);
     }
 
     public void startDocument() throws SAXException {
@@ -35,7 +41,7 @@ public class XMLHandler extends DefaultHandler {
         Enumeration<String> e = exceptionTags.keys();
         while (e.hasMoreElements()) {
             String currentTag = e.nextElement();
-            System.out.println("local Name |" +
+            out.println("local Name |" +
                             currentTag + "| Got Exception " +
                             exceptionTags.get(currentTag) + "times"
                     );
@@ -54,7 +60,7 @@ public class XMLHandler extends DefaultHandler {
     }
 
     public void warning(SAXParseException spe) {
-        System.out.println("Warning: " + getParseExceptionInfo(spe));
+        out.println("Warning: " + getParseExceptionInfo(spe));
     }
 
     public void error(SAXParseException spe) throws SAXException {

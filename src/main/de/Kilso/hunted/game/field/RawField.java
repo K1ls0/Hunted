@@ -4,43 +4,43 @@ import java.awt.*;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class GameField {
+public class RawField {
 
-    private FieldObject[][] field;
+    private FieldTile[][] field;
     
 
-    private GameField(int width, int height) {
-        field = new FieldObject[width][height];
+    private RawField(int width, int height) {
+        field = new FieldTile[width][height];
     }
-    private GameField(Dimension dimension) {
+    private RawField(Dimension dimension) {
         this(dimension.width, dimension.height);
     }
 
-    public static GameField createByDimension(int width, int height) {
-        return new GameField(width, height);
+    public static RawField createByDimension(int width, int height) {
+        return new RawField(width, height);
     }
-    public static GameField createByDimension(Dimension d) {
-        return new GameField(d);
+    public static RawField createByDimension(Dimension d) {
+        return new RawField(d);
     }
 
 
 
-    public void setField(FieldObject[][] newField) {
-        field = new FieldObject[newField.length][newField[0].length];
+    public void setField(FieldTile[][] newFieldTile) {
+        field = new FieldTile[newFieldTile.length][newFieldTile[0].length];
 
-        for (int x = 0; x < newField.length; x++) {
-            for (int y = 0; y < newField[x].length; y++) {
-                field[x][y] = newField[x][y];
+        for (int x = 0; x < newFieldTile.length; x++) {
+            for (int y = 0; y < newFieldTile[x].length; y++) {
+                field[x][y] = newFieldTile[x][y];
             }
         }
     }
 
 
-    public FieldObject[][] getField() {
+    public FieldTile[][] getField() {
         return field;
     }
 
-    public FieldObject get(int x, int y) {
+    public FieldTile get(int x, int y) {
         return field[x][y];
     }
 

@@ -1,10 +1,10 @@
 package main.de.Kilso.hunted.game;
 
-import main.de.Kilso.hunted.game.field.GameField;
+import main.de.Kilso.hunted.game.field.RawField;
 
 public class GameCore {
 
-    private GameField gameField;
+    private RawField gameField;
 
     private GameCore() {
 

@@ -67,11 +67,11 @@ public enum BackImgCombs {
 
         ERROR(-1, -1);
 
-    private static GameField field;
+    private static RawField field;
 
     private Point tileCoords;
 
-    public static BackImgCombs getBackgroundComb(GameField fieldR, Point co) {
+    public static BackImgCombs getBackgroundComb(RawField fieldR, Point co) {
         field = fieldR;
         if (    !nextTileIsSolid(co, 0,-1) &&
                 !nextTileIsSolid(co, 1,0) &&

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class FieldData {
-    private GameField field;
+    private RawField field;
 
     private Dimension planeDimension;
 
@@ -21,13 +21,13 @@ public class FieldData {
 
 
     private FieldData(Dimension mapDimension) {
-        field = GameField.createByDimension(mapDimension);
+        field = RawField.createByDimension(mapDimension);
         planeDimension = new Dimension(1, 1);
 
         enemies = new HashMap<>();
     }
 
-    private FieldData(GameField field) {
+    private FieldData(RawField field) {
         this.field = field;
         planeDimension = new Dimension(1, 1);
 
@@ -42,13 +42,13 @@ public class FieldData {
         return new FieldData(d);
     }
 
-    public static FieldData crateByGameField(GameField field) {
+    public static FieldData crateByGameField(RawField field) {
         return new FieldData(field);
     }
 
 
 
-    public void setGameField(GameField field) {
+    public void setGameField(RawField field) {
         this.field = field;
     }
 
@@ -70,7 +70,7 @@ public class FieldData {
 
 
 
-    public GameField getField() {
+    public RawField getField() {
         return field;
     }
 

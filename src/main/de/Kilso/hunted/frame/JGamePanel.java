@@ -6,7 +6,7 @@ import main.de.Kilso.hunted.game.field.FieldData;
 import main.de.Kilso.hunted.game.entities.Finish;
 import main.de.Kilso.hunted.game.entities.Player;
 import main.de.Kilso.hunted.game.entities.enemies.Enemy;
-import main.de.Kilso.hunted.game.field.GameField;
+import main.de.Kilso.hunted.game.field.RawField;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +51,7 @@ public class JGamePanel extends JPanel {
     }
 
     private BufferedImage paintField() {
-        GameField currentField = currentFieldData.getField();
+        RawField currentField = currentFieldData.getField();
         Dimension planeDimension = currentFieldData.getPlaneDimension();
 
         BufferedImage paintedField = new BufferedImage( currentField.getWidth() * planeDimension.width,
@@ -72,7 +72,7 @@ public class JGamePanel extends JPanel {
     }
 
     private BufferedImage paintEntities() {
-        GameField currentField = currentFieldData.getField();
+        RawField currentField = currentFieldData.getField();
         Dimension planeDimension = currentFieldData.getPlaneDimension();
 
         Player player = currentFieldData.getPlayer();

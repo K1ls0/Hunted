@@ -1,10 +1,10 @@
 package main.de.Kilso.hunted.game.field;
 
-public class FieldObject {
+public class FieldTile {
     protected boolean solid;
 
     public boolean equals(Object obj) {
-        return (obj instanceof FieldObject) && ((FieldObject)obj).isSolid();
+        return (obj instanceof FieldTile) && ((FieldTile)obj).isSolid();
     }
 
     public int hashCode() {
