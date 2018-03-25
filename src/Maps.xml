@@ -2,4 +2,5 @@
 
 <Maps>
     <Map1 Path="Map1.xml"/>
+    <Map2 Path="Map2.xml"/>
 </Maps>

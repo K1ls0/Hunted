@@ -5,6 +5,7 @@ import main.de.Kilso.hunted.main.config.FilePaths;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.File;
@@ -46,18 +47,25 @@ public class XMLInterpreter {
         return returnMap;
     }
     //TODO interprete Maps(to FieldObjects) + MapIndex(to List<String> (Paths of Map XML Files)) using XMLAdapter (files to Structures)
-    private List<String> interpretMapPaths(String mapIndexpath) throws IOException, SAXException {//TODO
+    private List<String> interpretMapPaths(String mapIndexpath) throws IOException, SAXException {
+        List<String> returnPathIndex = new LinkedList<>();
+
         Document parsedMapindex = adapter.parseFile(new File(mapIndexpath));
-        Element e = parsedMapindex.getDocumentElement();
-        adapter.printTreeNode(e);
+        NodeList maps = parsedMapindex.getDocumentElement().getElementsByTagName("Maps").item(0).getChildNodes();
+        for (int i = 0; i < maps.getLength(); i++) {
+            returnPathIndex.add(((Element) maps.item(i)).getAttribute("Path"));
+        }
+        return returnPathIndex;
     }
 
-    private FieldData interpreteMapData(String MapPath) {
+    private FieldData interpreteMapData(String mapPath) throws IOException, SAXException {
+        Document parsedMapData = adapter.parseFile(new File(mapPath));
+
         //TODO
     }
 
 
-    public List<String> getMapImages() {
+    public List<String> getMapImagePaths() {
         return mapImages;
     }
 }

@@ -61,6 +61,11 @@ public class XMLAdapter {
     }
 
     public void printTreeNode(Node n) {
+        printTree(n);
+        indent = 0;
+    }
+
+    private void printTree(Node n) {
 
         PrintStream output = System.out;
         int type = n.getNodeType();
@@ -94,7 +99,7 @@ public class XMLAdapter {
                 NamedNodeMap nodeMap = ((DocumentType)n).getEntities();
                 indent += 2;
                 for (int i = 0; i < nodeMap.getLength(); i++) {
-                    printTreeNode(nodeMap.item(i));
+                    printTree(nodeMap.item(i));
                 }
                 indent -= 2;
                 break;
@@ -105,7 +110,7 @@ public class XMLAdapter {
                 indent += 2;
                 NamedNodeMap atts = n.getAttributes();
                 for (int i = 0; i < atts.getLength(); i++) {
-                    printTreeNode(atts.item(i));
+                    printTree(atts.item(i));
                 }
                 indent--;
                 break;
@@ -136,12 +141,11 @@ public class XMLAdapter {
         }
         indent++;
         for (Node child = n.getFirstChild(); child != null; child = child.getNextSibling()) {
-            printTreeNode(child);
+            printTree(child);
         }
         indent--;
 
     }
-
     public void printNode(Node n) {
         StringBuffer output = new StringBuffer();
         output.append("\n" + separator() + "Node: \"" + n.getNodeName() + "\"");

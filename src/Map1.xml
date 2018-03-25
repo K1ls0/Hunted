@@ -13,6 +13,5 @@
 	<enemy>
 		<go length="1" amount="-1"/>
 		<go length="2" amount="2"/>
-
 	</enemy>
 </mapdata>
