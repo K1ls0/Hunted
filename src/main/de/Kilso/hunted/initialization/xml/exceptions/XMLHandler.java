@@ -13,7 +13,7 @@ import java.util.Hashtable;
 public class XMLHandler extends DefaultHandler {
 
     private Hashtable<String, Integer> exceptionTags;
-    PrintWriter out;
+    private PrintWriter out;
 
     private XMLHandler(PrintWriter out) {
         this.out = out;
